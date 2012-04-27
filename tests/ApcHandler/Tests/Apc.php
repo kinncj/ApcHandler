@@ -30,7 +30,7 @@ class Apc extends \PHPUnit_Framework_TestCase{
 		$key = $this->apc->getKey($this->key);
 		var_dump($this->key);
 		var_dump($key);
-		var_dup($this->apc);
+		var_dump($this->apc);
 		$keyValue1 = $key->value1;
 		$keyValue2 = $key->value2;
 		$keyValue3 = $key->value3;
