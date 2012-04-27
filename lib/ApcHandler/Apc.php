@@ -12,8 +12,7 @@ class Apc{
 	private static $instance;
 
 	public function addKey(Key $key){
-		$keyName = $key->getName();
-		$this->keys["{$keyName}"] = $key->getValue();
+		$this->keys[] = $key;
 		return $this;
 	}
 
@@ -32,14 +31,15 @@ class Apc{
 	private function getApcKey(Key $key){
 		$keyName = $key->getName();
 		if(apc_exists("{$keyName}")){
-			return apc_fetch("{$keyName}");
+			$key = Key::getInstance("{$keyName}",apc_fetch("{$keyName}");
 		}
 		return false;
 	}
 
 	public function store(){
-		foreach($this->keys as $key=>$value){
-			apc_store("{$key}",$value);
+		foreach($this->keys as $key){
+			$keyName = $key->getName();
+			apc_store("{$keyName}",$key->getValue(false));
 		}
 		return $this;
 	}
