@@ -8,17 +8,17 @@ $apc = new Apc();
 $key1 = Key::getInstance();
 
 $keyValue1 = new \stdClass();
-$keyValue1->val1 = "a";
-$keyValue1->val2 = "b";
+$keyValue1->name = "Test";
+$keyValue1->val = "apc";
 
 $key1->setName("TestKey1")->setValue($keyValue1);
 
-$key2 = clone $key1;
+$key2 = Key::getInstance();
 
 $keyValue2 = new \stdClass();
 
-$keyValue2->val1 = "c";
-$keyValue2->val2 = $keyValue1;
+$keyValue2->attr1 = "c";
+$keyValue2->attr2 = $keyValue1;
 
 $key2->setName("TestKey2")->setValue($keyValue2);
 
