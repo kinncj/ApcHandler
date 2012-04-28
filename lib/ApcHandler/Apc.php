@@ -81,7 +81,7 @@ class Apc
         $keyName = $this->ApcKeyName . $key->getName();
         $keyValue = apc_fetch("{$keyName}");
         if ($this->keyExists($key)) {
-            return Key::getInstance("{$keyName}", $keyValue);
+            return new Key("{$keyName}", $keyValue);
         }
         return false;
     }

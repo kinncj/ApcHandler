@@ -36,7 +36,7 @@ class Key
     private $name;
     private $value;
 
-    private function __construct($name = null, $value = null)
+    public function __construct($name = null, $value = null)
     {
         $this->name = $name;
         $this->value = $value;

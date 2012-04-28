@@ -10,7 +10,7 @@ class Key extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $this->key = KeyClass::getInstance();
+        $this->key = new KeyClass();
         $this->keyValue = new \stdClass();
         $this->keyValue->value1 = "Testing";
         $this->keyValue->value2 = "with";

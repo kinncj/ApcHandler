@@ -12,7 +12,7 @@ class Apc extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $this->key = KeyClass::getInstance();
+        $this->key = new KeyClass();
         $this->apc = new ApcClass();
         $this->keyValue = new \stdClass();
         $this->keyValue->value1 = "Testing";
