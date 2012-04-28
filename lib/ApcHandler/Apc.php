@@ -15,28 +15,21 @@ class Apc{
 		return $this;
 	}
 
-	public function removeKey($key){
-		$key = $this->getKeyName($key);
+	public function removeKey(Key $key){
+		$keyName = $this->ApcKeyName.$key->getName();
 		if($this->KeyExists($key)){
-			return apc_delete("{$key}");
+			unset($key);
+			return apc_delete("{$keyName}");
 		}
 		return false;
 	}
 
-	public function getKey($key){
-		$key = $this->getKeyName($key);
+	public function getKey(Key $key){
 		return $this->getApcKey($key);
 	}
 
-	private function getKeyName($key){
-		if($key instanceof Key){
-			$key = $key->getName();
-		}
-		return $key;
-	}
-	
-	private function getApcKey($key){
-		$keyName = $this->getKeyName($key);
+	private function getApcKey(Key $key){
+		$keyName = $this->ApcKeyName.$key->getName();
 		$keyValue = apc_fetch("{$keyName}");
 		if($this->keyExists($key)){
 		    return Key::getInstance("{$keyName}",$keyValue);
@@ -44,15 +37,15 @@ class Apc{
 		return false;
 	}
 
-	private function KeyExists($key){
-		$keyName =  $this->getKeyName($key);
+	private function KeyExists(Key $key){
+		$keyName = $this->ApcKeyName.$key->getName();
 		apc_fetch("{$keyName}",$keyExists);
 		return $keyExists;
 	}
 	
 	public function store(){
 		foreach($this->keys as $key){
-			$keyName = $this->ApcKeyName.$key->getName($key);
+			$keyName = $this->ApcKeyName.$key->getName();
 			$check = apc_store("{$keyName}",$key->getValue(false));
 			if($check === false){
 				return $check;
