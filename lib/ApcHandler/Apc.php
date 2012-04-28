@@ -31,7 +31,7 @@ class Apc{
 	private function getApcKey(Key $key){
 		$keyName = $key->getName();
 		if(apc_exists("{$keyName}")){
-			$key = Key::getInstance("{$keyName}",apc_fetch("{$keyName}"));
+			return Key::getInstance("{$keyName}",apc_fetch("{$keyName}"));
 		}
 		return false;
 	}
