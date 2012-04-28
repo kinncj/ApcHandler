@@ -7,7 +7,7 @@ namespace ApcHandler;
  class Key{
  	private $name;
  	private $value;
-
+ 	
  	public static $instance;
 
  	private function __construct($name,$value){

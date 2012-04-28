@@ -7,8 +7,7 @@ namespace ApcHandler;
 class Apc{
 
 	private $keys = array();
-	private $key = "ApcHandler:";
-
+	private $ApcKeyName = "ApcHandler:";
 	private static $instance;
 
 	public function addKey(Key $key){
@@ -18,8 +17,8 @@ class Apc{
 
 	public function removeKey(Key $key){
 		$keyName = $key->getName();
-		if(apc_exists("{$keyName}")){
-			return apc_delete("{$keyName}");
+		if(apc_exists("{$this->ApcKeyName}{$keyName}")){
+			return apc_delete("{$this->ApcKeyName}{$keyName}");
 		}
 		return false;
 	}
@@ -30,16 +29,17 @@ class Apc{
 
 	private function getApcKey(Key $key){
 		$keyName = $key->getName();
-		if(apc_exists("{$keyName}")){
-			return Key::getInstance("{$keyName}",apc_fetch("{$keyName}"));
+		$keyValue = apc_fetch("{$this->ApcKeyName}{$keyName}",$keyExists);
+		if($keyExists){
+		    return Key::getInstance("{$this->ApcKeyName}{$keyName}",$keyValue);
 		}
-		return false;
+		return $keyExists;
 	}
 
 	public function store(){
 		foreach($this->keys as $key){
 			$keyName = $key->getName();
-			apc_store("{$keyName}",$key->getValue(false));
+			apc_store("{$this->ApcKeyName}{$keyName}",$key->getValue(false));
 		}
 		return $this;
 	}
