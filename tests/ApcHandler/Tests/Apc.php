@@ -17,7 +17,7 @@ class Apc extends \PHPUnit_Framework_TestCase{
 		$this->keyValue->value2 = "with";
 		$this->keyValue->value3 = "PHPUnit";
 	}
-
+    
 	public function testStore(){
 		$this->key->setName("Test");
 		$this->key->setValue($this->keyValue);
@@ -25,12 +25,12 @@ class Apc extends \PHPUnit_Framework_TestCase{
 		$store = $this->apc->store();
 		$this->assertTrue($store instanceof ApcClass);
 	}
-
+    
+	/**
+	 * @depends testStore
+	 */
 	public function testGetKey(){
 		$key = $this->apc->getKey($this->key);
-		var_dump($this->key);
-		var_dump($key);
-		var_dump($this->apc);
 		$keyValue1 = $key->value1;
 		$keyValue2 = $key->value2;
 		$keyValue3 = $key->value3;
@@ -39,6 +39,9 @@ class Apc extends \PHPUnit_Framework_TestCase{
 		$this->assertEquals("PHPUnit",$keyValue3);
 	}
 
+	/**
+	 * @depends testGetKey
+	 */
 	public function testRemoveKey(){
 		$result = $this->apc->removeKey($this->key);
 		$this->assertTrue($result);
