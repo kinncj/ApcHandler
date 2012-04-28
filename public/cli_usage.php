@@ -10,7 +10,6 @@ $key1 = Key::getInstance();
 $keyValue1 = new \stdClass();
 $keyValue1->val1 = "a";
 $keyValue1->val2 = "b";
-
 $key1->setName("TestKey1")->setValue($keyValue1);
 
 $keyValue2 = clone $keyValue1;
