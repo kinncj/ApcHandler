@@ -16,7 +16,7 @@ class Apc{
 	}
 
 	public function removeKey(Key $key){
-		$key = $this->getKeyName();
+		$key = $this->getKeyName($key);
 		if($this->KeyExists($key)){
 			return apc_delete("{$key}");
 		}
@@ -24,7 +24,7 @@ class Apc{
 	}
 
 	public function getKey($key){
-		$key = $this->getKeyName();
+		$key = $this->getKeyName($key);
 		return $this->getApcKey($key);
 	}
 
@@ -45,14 +45,14 @@ class Apc{
 	}
 
 	private function KeyExists($key){
-		$keyName =  $this->getKeyName();
+		$keyName =  $this->getKeyName($key);
 		apc_fetch("{$keyName}",$keyExists);
 		return $keyExists;
 	}
 	
 	public function store(){
 		foreach($this->keys as $key){
-			$keyName = $this->ApcKeyName.$key->getName();
+			$keyName = $this->ApcKeyName.$key->getName($key);
 			$check = apc_store("{$keyName}",$key->getValue(false));
 			if($check === false){
 				return $check;
