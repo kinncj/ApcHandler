@@ -40,7 +40,7 @@ class Apc extends \PHPUnit_Framework_TestCase{
 	}
 
 	/**
-	 * @depends testGetKey
+	 * @depends testGetKeyValues
 	 */
 	public function testRemoveKey(){
 		$result = $this->apc->removeKey($this->key);
