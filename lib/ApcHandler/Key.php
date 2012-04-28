@@ -43,7 +43,7 @@ namespace ApcHandler;
  	public function getValue($decoded = true){
  		$return = $this->value;
  		if($decoded){
- 			$return = base64_decode(json_decode($this->value));
+ 			$return = json_decode(base64_decode($this->value));
  		}
  		return $return;
  	}
