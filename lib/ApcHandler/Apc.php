@@ -16,29 +16,36 @@ class Apc{
 	}
 
 	public function removeKey(Key $key){
-		$keyName = $this->ApcKeyName.$key->getName();
+		$key = $this->getKeyName();
 		if($this->KeyExists($key)){
-			return apc_delete("{$keyName}");
+			return apc_delete("{$key}");
 		}
 		return false;
 	}
 
-	public function getKey(Key $key){
+	public function getKey($key){
+		$key = $this->getKeyName();
 		return $this->getApcKey($key);
 	}
 
-	private function getApcKey(Key $key){
-		$keyName = $this->ApcKeyName.$key->getName();
+	private function getKeyName($key){
+		if($key instanceof Key){
+			$key = $key->getName();
+		}
+		return $key;
+	}
+	
+	private function getApcKey($key){
+		$keyName = $this->getKeyName($key);
 		$keyValue = apc_fetch("{$keyName}");
-		var_dump($keyValue);
 		if($this->keyExists($key)){
 		    return Key::getInstance("{$keyName}",$keyValue);
 		}
 		return false;
 	}
 
-	private function KeyExists(Key $key){
-		$keyName = $this->ApcKeyName.$key->getName();
+	private function KeyExists($key){
+		$keyName =  $this->getKeyName();
 		apc_fetch("{$keyName}",$keyExists);
 		return $keyExists;
 	}

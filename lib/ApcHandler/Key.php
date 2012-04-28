@@ -33,11 +33,10 @@ namespace ApcHandler;
  	}
 
  	public function setValue($value,$encoded = true){
- 		$finalValue = $value;
  		if($encoded){
- 			$finalValue = base64_encode(json_encode($value));
+ 			$value = base64_encode(json_encode($value));
  		}
- 		$this->value = $finalValue;
+ 		$this->value = $value;
  	}
 
  	public function getValue($decoded = true){
