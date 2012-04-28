@@ -14,4 +14,4 @@ $key1->setName("TestKey1")->setValue($keyValue1);
 $apc->addKey($key1);
 var_dump(array("Cli"=>$apc->store()));
 var_dump(array("Cli"=>$key1));var_dump(array("Cli"=>$key1->getValue()));
-var_dump(array("Cli"=>$apc->getKey($key1)));
+var_dump(array("Cli"=>$apc->getKey($key1)->getValue()));
