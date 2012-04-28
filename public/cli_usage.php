@@ -15,7 +15,7 @@ $key1->setName("TestKey1")->setValue($keyValue1);
 
 $key2 = clone $key1;
 
-$keyValue2 = clone $keyValue1;
+$keyValue2 = new \stdClass();
 
 $keyValue2->val1 = "c";
 $keyValue2->val2 = $keyValue1;
