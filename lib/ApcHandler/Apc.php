@@ -46,7 +46,10 @@ class Apc{
 	public function store(){
 		foreach($this->keys as $key){
 			$keyName = $this->ApcKeyName.$key->getName();
-			apc_store("{$keyName}",$key->getValue(false));
+			$check = apc_store("{$keyName}",$key->getValue(false));
+			if($check === false){
+				return $check;
+			}
 		}
 		return $this;
 	}
