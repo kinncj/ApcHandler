@@ -20,7 +20,7 @@ $keyValue2 = clone $keyValue1;
 $keyValue2->val1 = "c";
 $keyValue2->val2 = $keyValue1;
 
-$key2->setName("TestKey2")->setValye($keyValue2);
+$key2->setName("TestKey2")->setValue($keyValue2);
 
 $apc->addKey($key1)->addKey($key2)->store();
 
