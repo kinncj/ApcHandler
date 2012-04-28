@@ -30,10 +30,10 @@ class Apc{
 
 	private function getApcKey(Key $key){
 		$keyName = $key->getName();
-		//if(apc_exists("{$keyName}")){
+		if(apc_exists("{$keyName}")){
 			return Key::getInstance("{$keyName}",apc_fetch("{$keyName}"));
-		//}
-		//return false;
+		}
+		return false;
 	}
 
 	public function store(){
