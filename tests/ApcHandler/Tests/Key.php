@@ -37,7 +37,7 @@ class Key extends \PHPUnit_Framework_TestCase{
 	 * @depends testSetValue
 	 */
 	public function testGetValue(){
-		$key = $this->key->getValue();
+		$key = $this->key->getValue(false);
 		var_dump($key);
 		$keyValue1 = $key->value1;
 		$keyValue2 = $key->value2;
