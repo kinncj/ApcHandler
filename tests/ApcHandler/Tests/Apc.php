@@ -29,8 +29,8 @@ class Apc extends \PHPUnit_Framework_TestCase{
 	/**
 	 * @depends testStore
 	 */
-	public function testGetKey(){
-		$key = $this->apc->getKey($this->key);
+	public function testGetKeyValues(){
+		$key = $this->apc->getKey($this->key)->getValue();
 		$keyValue1 = $key->value1;
 		$keyValue2 = $key->value2;
 		$keyValue3 = $key->value3;
