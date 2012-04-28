@@ -24,8 +24,8 @@ $key2->setName("TestKey2")->setValue($keyValue2);
 
 $apc->addKey($key1)->addKey($key2)->store();
 
-$getValue1 = $apc->getKey($key1);
-$getValue2 = $apc->getKey($key2);
+$getValue1 = $apc->getKey($key1)->getValue();
+$getValue2 = $apc->getKey($key2)->getValue();
 
 var_dump($getValue1);
 var_dump($getValue2);
