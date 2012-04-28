@@ -36,21 +36,11 @@ class Key
     private $name;
     private $value;
 
-    public static $instance;
-
-    private function __construct($name, $value)
+    private function __construct($name = null, $value = null)
     {
         $this->name = $name;
         $this->value = $value;
         return $this;
-    }
-
-    public static function getInstance($name = null, $value = null)
-    {
-        if (!isset(self::$instance)) {
-            self::$instance = new self($name, $value);
-        }
-        return self::$instance;
     }
 
     public function setName($name)
