@@ -38,6 +38,7 @@ class Key extends \PHPUnit_Framework_TestCase{
 	 */
 	public function testGetValue(){
 		$key = $this->key->getValue();
+		var_dump($key);
 		$keyValue1 = $key->value1;
 		$keyValue2 = $key->value2;
 		$keyValue3 = $key->value3;
