@@ -15,7 +15,7 @@ class Apc{
 		return $this;
 	}
 
-	public function removeKey(Key $key){
+	public function removeKey($key){
 		$key = $this->getKeyName($key);
 		if($this->KeyExists($key)){
 			return apc_delete("{$key}");
