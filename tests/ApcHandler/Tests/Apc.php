@@ -26,7 +26,7 @@ class Apc extends \PHPUnit_Framework_TestCase
         $this->key->setValue($this->keyValue);
         $this->apc->addKey($this->key);
         $store = $this->apc->store();
-        $this->assertTrue($store instanceof ApcClass);
+        $this->assertInstanceOf('ApcHandler\Apc',$store);
     }
 
     /**
